@@ -1,0 +1,14 @@
+﻿@model CategoryCreateModel
+@{
+    Layout = "_Layout";
+}
+
+<form asp-action="Create" asp-controller="Category" method="post">
+    <div class="mb-3">
+        <label asp-for="@Model.Definition">Definition : </label>
+        <input class="form-control" type="text" asp-for="@Model.Definition"/>
+    </div>
+    <div class="mb-3">
+        <button type="submit" class="btn btn-success">Create</button>
+    </div>
+</form>

@@ -1,0 +1,40 @@
+﻿@model ProductUpdateModel
+@{
+    Layout = "_Layout";
+}
+
+<form asp-action="Update" asp-controller="Product" method="post">
+    <input type="hidden" value="@Model.Id" />
+    <div class="mb-3">
+        <label asp-for="@Model.Name">Name : </label>
+        <input class="form-control" type="text" asp-for="@Model.Name" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="@Model.Stock">Stock : </label>
+        <input class="form-control" type="number" asp-for="@Model.Stock" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="@Model.Price">Price : </label>
+        <input class="form-control" type="number" asp-for="@Model.Price" />
+    </div>
+    <div class="mb-3">
+        @if (Model.CategoryList?.Count > 0)
+        {
+            <label asp-for="@Model.CategoryId">Category : </label>
+            <select asp-for="@Model.CategoryId" class="form-select">
+                <option value="0">Select a Category...</option>
+                @foreach (var category in Model.CategoryList)
+                {
+                    <option value="@category.Id">@category.Definition</option>
+                }
+            </select>
+        }
+        else
+        {
+            <p class="text-danger">Categories returned null!</p>
+        }
+    </div>
+    <div class="mb-3">
+        <button type="submit" class="btn btn-success">Save</button>
+    </div>
+</form>
